@@ -5,7 +5,8 @@ from fixed_params import kc
 
 
 def visualize_microemulsion(alpha, beta, a, b, c,
-                            N=128, dx=1.0, seed=None):
+                            N=128, dx=1.0, seed=None,
+                            is_color=True):
 
     """Generate a 3D Gaussian random field and display a 2D slice."""
 
@@ -56,7 +57,10 @@ def visualize_microemulsion(alpha, beta, a, b, c,
 
     fig, ax = plt.subplots(figsize=(7, 7))
  
-    yellow = "#F3B61F" ; blue =  "#255C99" ; red = "#D62828" 
+    if is_color:
+        yellow = "#F3B61F" ; blue =  "#255C99" ; red = "#D62828"
+    else:
+        yellow = "white"; blue = "k" ; red ="k"
     if alpha > beta:
         # Water-in-oil
         levels = [-np.inf, beta, alpha, np.inf]
