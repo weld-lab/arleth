@@ -23,9 +23,10 @@ def free_energy(alpha):
 
 
     """ [A] constant (eqn 6)
-    The paper tells Alpha = e^(-alpha^2) + e^(-beta^2)
+    The paper gives A = e^(-alpha^2) + e^(-beta^2)
     We think it's an error, and the actual value should be,
     A = np.exp(-alpha*alpha/2) + np.exp(-beta*beta/2)
+    As expressed in Teubner1991
     """
     A = np.exp(-alpha*alpha/2) + np.exp(-beta*beta/2)
 
@@ -126,8 +127,13 @@ def free_energy(alpha):
     B = (alpha*w_alpha - beta*w_beta) / A
     B2 = (alpha**2*w_alpha + beta**2*w_beta) / A
     
-    
-    H = 0.5 * np.sqrt(π*k2/6) * B
+    """Minus sign to match Arleth's
+    figures and discussion which use the
+    opposite convention to printed eqn 12.
+    Reversing the normal changes H
+    but leaves H2 and K unchanged.
+    """ 
+    H = - 0.5 * np.sqrt(π*k2/6) * B
     H2 = k2/6 * (B2 - 1) + k4/(5*k2)
     K = k2/6 * (B2 - 1)
     
