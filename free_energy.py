@@ -4,11 +4,17 @@ from scipy.optimize import least_squares
 from scipy.integrate import quad
 
 from utils import *
-from fixed_params import *
+import fixed_params as params
 
 DEBUG = False
-
-def free_energy(alpha):
+def free_energy(alpha,
+                phi_w=params.phi_w,
+                phi_s=params.phi_s,
+                kappa=params.kappa,
+                kappa_bar=params.kappa_bar,
+                H0=params.H0,
+                kc=params.kc,
+                ds=params.ds):
     """ Level-cut parameters (eqn 4)
     """
     alpha_c = norm.ppf(1 - phi_w)
