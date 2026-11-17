@@ -7,12 +7,11 @@ from utils import *
 import fixed_params as params
 
 DEBUG = False
-def free_energy(alpha,
-                parameters):
+def free_energy(alpha, parameters):
     """ Level-cut parameters (eqn 4)
     """
 
-     phi_w, phi_s, kappa, kappa_bar, H0, kc, dc = parameters 
+    phi_w, phi_s, kappa, kappa_bar, H0, kc, ds = parameters 
     
     alpha_c = norm.ppf(1 - phi_w)
     if alpha < alpha_c:
@@ -108,6 +107,8 @@ def free_energy(alpha,
     k2 = spectral_moment(2)
     
     k2_target = 3 * (π * phi_s / (2*A))**2
+    if k2_target >= kc**2:
+        raise ValueError("Spectral momentum cannot be computed with kc = ", kc, " for alpha = ", alpha)
     
     if DEBUG: print("<k^0> =", k0, "  Target = 1.0")
     if DEBUG: print("<k^2> =", k2, "  Target = ", k2_target)

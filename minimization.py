@@ -18,7 +18,7 @@ def minimize_free_energy(parameters,
 
     def objective(alpha):
         energy, *_ = free_energy(
-            alpha, phi_w, phi_s, kappa, kappa_bar, H0
+            alpha, parameters
         )
         return energy
 
@@ -84,7 +84,7 @@ def minimize_free_energy(parameters,
 
     # Retrieve optimal parameters
     f_min, beta_opt, a_opt, b_opt, c_opt = free_energy(
-        alpha_opt, phi_w, phi_s, kappa, kappa_bar, H0
+        alpha_opt, parameters
     )
 
     return alpha_opt, beta_opt, a_opt, b_opt, c_opt, f_min
