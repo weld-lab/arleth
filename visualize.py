@@ -1,14 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from fixed_params import kc
 
-
-def visualize_microemulsion(alpha, beta, a, b, c,
+def visualize_microemulsion(parameters,
+                            alpha, beta, a, b, c,
                             N=128, dx=1.0, seed=None,
                             is_color=True):
 
     """Generate a 3D Gaussian random field and display a 2D slice."""
+
+    
 
     rng = np.random.default_rng(seed)
     L = N * dx
@@ -30,7 +31,7 @@ def visualize_microemulsion(alpha, beta, a, b, c,
     # spectral density (eqn 15)
     spectrum = np.zeros_like(k2)
 
-    mask = (k2 > 0) & (k2 <= kc**2)
+    mask = (k2 > 0) & (k2 <= parameters.kc**2)
     denominator = k2**2 - b*k2 + c
 
     if np.any(denominator[mask] <= 0):

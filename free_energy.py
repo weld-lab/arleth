@@ -8,15 +8,12 @@ import fixed_params as params
 
 DEBUG = False
 def free_energy(alpha,
-                phi_w=params.phi_w,
-                phi_s=params.phi_s,
-                kappa=params.kappa,
-                kappa_bar=params.kappa_bar,
-                H0=params.H0,
-                kc=params.kc,
-                ds=params.ds):
+                parameters):
     """ Level-cut parameters (eqn 4)
     """
+
+     phi_w, phi_s, kappa, kappa_bar, H0, kc, dc = parameters 
+    
     alpha_c = norm.ppf(1 - phi_w)
     if alpha < alpha_c:
         # alpha < beta : oil-in-water

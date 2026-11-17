@@ -3,15 +3,16 @@ from scipy.optimize import minimize_scalar
 from scipy.stats import norm
 
 from free_energy import free_energy
+from parameters import Parameters
 import fixed_params as params
 
 
-def minimize_free_energy(phi_w=params.phi_w, phi_s=params.phi_s,
-                         kappa=params.kappa, kappa_bar=params.kappa_bar,
-                         H0=params.H0,
+def minimize_free_energy(parameters,
                          low_bound=-10, high_bound=10,
                          n_alpha=100, eps=1e-3):
     """Minimize the free energy with respect to alpha."""
+
+    phi_w, phi_s, kappa, kappa_bar, H0, kc, dc = parameters 
 
     alpha_c = norm.ppf(1 - phi_w)
 
